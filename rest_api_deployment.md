@@ -7,11 +7,11 @@ You can do it within the AWS Free Tier.
 
 Here are the high-level steps we’ll follow:
 
-> Step 1: Create a DynamoDB table
-> Step 2: Create a Lambda function
-> Step 3: Create an API gateway
-> Step 4: Test your API
-> Step 5: Monitor your Logs and Insights
+Step 1: Create a DynamoDB table
+Step 2: Create a Lambda function
+Step 3: Create an API gateway
+Step 4: Test your API
+Step 5: Monitor your Logs and Insights
 
 Here is a link to my github repo: https://github.com/Uwadon1/AWS_RestLambdaAPI
 
@@ -35,8 +35,6 @@ From the AWS dashboard, search for DynamoDb, then click on the DynamoDB service 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jvcrmjfmqip6azy2jb9j.png)
 
 
-
-
 Click on the “create table icon
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/dt1na5gbr2b985n5d3yq.png)
@@ -50,8 +48,6 @@ Fill in the necessary details and give your table a name (e.g `employee_info` or
 Leave the remaining options as default and click “create table.”
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/odx7byezazme5zmygdoy.png)
-
-
 
 By following these steps, you will successfully create a DynamoDB table named “employee_info” with the partition key set to “employeeid”.
 
@@ -70,13 +66,9 @@ Click on “create a function”:
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xh4aev0gi5v7o54zpxsl.png)
 '
 
-
-
 In the “create a function” dashboard, select “author from scratch.” In the basic information section, give your lambda a function name e.g `api_processing`, we will select Python 3.13 as our runtime
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mu2ubvyyuntzvm06u5df.png)
-
-
 
 
 For Permission, in the execution role section, we will opt for the third/last option: “create a new role from AWS policy templates.” 
@@ -88,8 +80,6 @@ This new role should give us the opportunity to attach policy that grants full a
 We will be brougth to the lambda dashboard, showing function successfully created.
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mnv05d1f92eqhtqwbx5i.png)
-
-
 
 
 Right now, we’ll need to tweak the permission for our IAM role. Navigate to the configuration section, and select the permission button. Next you’ll need to click on the link in the role name section.
@@ -157,7 +147,6 @@ When you click on the “Create Method” icon, you will be brought to the tab b
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rw3v3lymfrugqwptf3kh.png)
 
 
-
 Specify your Lambda function name (`api_processing`), leave the other options as default. Click ‘create method”. 
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kpxxpc0cdd81h4vukbdx.png)
@@ -180,7 +169,6 @@ We’ll need to create a new resource and give it the name `employees` and in th
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j6cr0jg6j4r9t820hdmb.png)
 
 
-
 The newly created resource should look like this, next we’ll create ‘get’ method  for the employees resource:
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bm108suuwmei2nt176wp.png)
@@ -195,22 +183,15 @@ Specify your Lambda function name (`api_processing`), leave the other options as
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g0qz6vzu7tu5prfc35s5.png)
 
-
-
 The newly created get method for the /employees resource should look like this.
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/khlnjb79dlu3f0l27ee9.png)
-
-
 
 
 Lastly we will need to create the CRUD methods for the employee resource. For each HTTP method (GET, POST, DELETE, PATCH):
 “Click on create Method” icon, you will be brought to the tab below, select the method “get” and click the checkmark. Select lambda function as the Integration type. Ensure to click on the button to turn on lambda proxy integration. 
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b3qkbc13b71h45elbm3m.png)
-
-
-
 
 
 Specify your Lambda function name (`api_processing`), leave the other options as default. Click ‘create method’, then confirm.
@@ -377,7 +358,7 @@ We should see the output below “Operation”: “UPDATE”, and ‘200 okay’
 
 
 
-Lastly, we will test the /employees ‘get’  API endpoint with Postman. Using the invoke url code on our browser, we will include the pathway to our employees resource (e.g /employees) at the end of the URL code. We will get the info output of all the employees in the company .
+Lastly, we will test the /employees ‘get’  API endpoint with Postman. Using the invoke url code on our browser, we will include the pathway to our employees resource (e.g /employees) at the end of the URL code. We will get the info output of all the employees in the company.
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5dq34hdr9c10qw6zjy2g.png)
 
@@ -391,5 +372,7 @@ We will go into our Dynamo DB dashboard to verify if all we have created using o
 
 Step FIVE: Monitoring the logs and insights
 Using cloudwatch we can monitor the logs for insights to check for errors and troubleshoot where necessary
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/am6tix3u3td4iws324pc.png)
 
 
